@@ -1,30 +1,33 @@
+import os
+import shutil
 from os import listdir
 from os.path import isfile, join
-onlyfiles = [f for f in listdir("./") if isfile(join("./", f))]
+files = [f for f in listdir("./") if isfile(join("./", f))]
 
-##
 imagefileextensions = []
 videofileextensions = []
 codefileextensions = []
 images = []
 videos = []
 code = []
-##
-extensiontype = [imagefileextensions, videofileextensions, codefileextensions]
-##
 
 def initSorting():
-    with open("fileextensions.txt", "r") as a_file:
-        for line in a_file:
+    with open("fileextensions.txt", "r") as fileextensions:
+        for line in fileextensions:
             stripped_line = line.strip()
-            if stripped_line == '-':
-
+            if stripped_line == "Images":
+                if not os.path.exists("Images"):
+                    os.mkdir("Images")
+                    shutil.move('./Images/','')
 
 
 def sortfiles():
-    for file in onlyfiles:
+    for file in files:
         if file.lower().endswith(('.png', '.jpg', '.jpeg')):
-            images.append(file)
+            if not os.path.exists("./Images"):
+                os.mkdir("Images")
+                shutil.move('./asd.txt', './Images/asd.txt')
+            else:
+                shutil.move('asd.txt', 'Images/asd.txt')
 
-initSorting()
 sortfiles()
